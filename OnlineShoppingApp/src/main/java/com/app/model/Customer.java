@@ -1,6 +1,8 @@
 package com.app.model;
 
 public class Customer {
+	
+
 	private String email;
 	private String fname;
 	private String lname;
@@ -43,8 +45,7 @@ public class Customer {
 	}
 	
 	public Customer() {
-		
+		// TODO Auto-generated constructor stub
 	}
 	
-
 }

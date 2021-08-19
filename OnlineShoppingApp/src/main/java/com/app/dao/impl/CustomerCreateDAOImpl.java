@@ -25,6 +25,7 @@ public class CustomerCreateDAOImpl implements CustomerCreateDAO {
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			
+			
 			preparedStatement.setString(1, customer.getEmail());
 			preparedStatement.setString(2, customer.getFname());
 			preparedStatement.setString(3, customer.getLname());

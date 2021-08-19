@@ -23,7 +23,7 @@ public class CustomerLoginServiceImpl implements CustomerLoginService{
 	public boolean checkPassword(String password) throws BusinessException {
 		boolean c = false;
 		
-		if(password.matches("[a-zA-Z]{5,10}")) {
+		if(password.matches("[a-zA-Z0-9]{5,15}")) {
 			c = true;
 		}
 		else {

@@ -33,6 +33,7 @@ public class CustomerLoginDAOImpl implements CustomerLoginDAO{
 					customer = new Customer();
 					
 					customer.setEmail(email);
+					customer.setEmail(email);
 					customer.setFname(resultSet.getString("fname"));
 					customer.setLname(resultSet.getString("lname"));
 					customer.setPassword(password);
