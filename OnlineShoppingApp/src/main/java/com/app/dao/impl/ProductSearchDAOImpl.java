@@ -14,7 +14,7 @@ import com.app.model.Product;
 
 public class ProductSearchDAOImpl implements ProductSearchDAO {
 
-	/*@Override
+	@Override
 	public List<Product> getProductsByName(String name) throws BusinessException {
 		List<Product> productList = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class ProductSearchDAOImpl implements ProductSearchDAO {
 		return productList;
 	}
 
-	@Override
+	/*@Override
 	public Product getProductById(int id) throws BusinessException {
 		Product product = null;
 		

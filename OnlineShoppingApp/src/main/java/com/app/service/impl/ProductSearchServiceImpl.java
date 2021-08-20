@@ -20,18 +20,18 @@ boolean c = false;
 	}
 	
 
-	@Override
+	/*@Override
 	public boolean checkId(int id) throws BusinessException {
 boolean c = false;
 		
-		if(id <100 || id>1000 ) {
+		if(id <1 || id>1000 ) {
 			throw new BusinessException("It seems you have entered invalid Product Id "+id+" +Retry!!!" );
 		}
 		else {
 			c = true;
 		}
 		return c;
-	}
+	}*/
 	
 
 }

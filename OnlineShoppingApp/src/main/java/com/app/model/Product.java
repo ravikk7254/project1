@@ -5,6 +5,7 @@ public class Product {
 	private String name;
 	private int price;
 	
+	
 	public int getId() {
 		return id;
 	}
@@ -23,17 +24,20 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	
 	@Override
 	public String toString() {
-		return "Product Details: [ID=" + id + ", Name=" + name + ", Price=" + price + "]";
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
+	
 	public Product(int id, String name, int price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
+		
 	}
-	
 	public Product() {
 
 	}

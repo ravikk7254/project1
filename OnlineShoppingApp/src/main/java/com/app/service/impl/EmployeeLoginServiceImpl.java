@@ -6,7 +6,7 @@ import com.app.service.EmployeeLoginService;
 public class EmployeeLoginServiceImpl implements EmployeeLoginService {
 
 	@Override
-	public boolean checkUserName(String username) throws BusinessException {
+	public  boolean checkUserName(String username) throws BusinessException {
 		
      boolean c = false;
 		

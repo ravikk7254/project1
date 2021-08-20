@@ -6,11 +6,11 @@ import com.app.service.CartAddService;
 public class CartAddServiceImpl implements CartAddService {
 
 	@Override
-	public boolean checkProductID(int orderId) throws BusinessException {
+	public boolean checkProductID(int cartId) throws BusinessException {
 boolean c = false;
 		
-		if(orderId <100 || orderId>1000 ) {
-			throw new BusinessException("Invalid ID: "+orderId+" entered");
+		if(cartId <1 || cartId>1000 ) {
+			throw new BusinessException("Invalid ID: "+cartId+" entered");
 		}
 		else {
 			c = true;

@@ -5,11 +5,15 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.app.dao.CartAddDAO;
+
 import com.app.dao.CustomerCreateDAO;
 import com.app.dao.CustomerLoginDAO;
 import com.app.dao.CustomerSearchDAO;
 import com.app.dao.ProductCreateDAO;
 import com.app.dao.ProductSearchDAO;
+import com.app.dao.impl.CartAddDAOImpl;
+
 import com.app.dao.impl.CustomerCreateDAOImpl;
 import com.app.dao.impl.CustomerLoginDAOImpl;
 import com.app.dao.impl.CustomerSearchDAOImpl;
@@ -18,12 +22,16 @@ import com.app.dao.impl.ProductSearchDAOImpl;
 import com.app.exception.BusinessException;
 import com.app.model.Customer;
 import com.app.model.Product;
+import com.app.service.CartAddService;
+
 import com.app.service.CustomerCreateService;
 import com.app.service.CustomerLoginService;
 import com.app.service.CustomerSearchService;
 import com.app.service.EmployeeLoginService;
 import com.app.service.ProductCreateService;
 import com.app.service.ProductSearchService;
+import com.app.service.impl.CartAddServiceImpl;
+
 import com.app.service.impl.CustomerCreateServiceImpl;
 import com.app.service.impl.CustomerLoginServiceImpl;
 import com.app.service.impl.CustomerSearchServiceImpl;
@@ -51,7 +59,7 @@ public class ShoppingMain {
 			log.info("3.) Login as Customer");
 			log.info("4.) EXIT");
 
-			log.info("\n Please!!!! Put your choice: ");
+			log.info("\n Please!!!!  Select your choice: ");
 			try {
 				choice = Integer.parseInt(scanner.nextLine());
 			} catch (NumberFormatException e) {
@@ -61,8 +69,8 @@ public class ShoppingMain {
 			
 			switch (choice) {
 			case 1:
-				log.info("Enter associate login details: ");
-				log.info("1.) Enter username");
+				log.info("Enter Employee login details: ");
+				log.info("1.) Enter your Username");
 
 				EmployeeLoginService employeeLoginService = new EmployeeLoginServiceImpl();
 
@@ -78,55 +86,51 @@ public class ShoppingMain {
 				}
 				
 
-				log.info("2.) Enter password");
+				log.info("2.) Enter your Password");
 
 				String password = scanner.nextLine();
 
 				try {
 					if (employeeLoginService.checkPassword(password)) {
-						log.info("Associate login successful!");
-						log.info("Welcome");
+						log.info("Employee logged in successfully!");
+						log.info("Hiii");
 					}
 				} catch (BusinessException e) {
 					log.warn(e.getMessage());
 					break;
 				}
-				int choiceass = 0;
+				int choose = 0;
 
 				do {
 
-					log.info("What would you want to do today admin?");
+					log.info("What do you wannaaa do?");
 
-					log.info("1.) Search Products");
-					log.info("2.) Add new Product");
-					log.info("3.) Search Customers");
-					log.info("4.) View all orders");
-					log.info("5.) Logout");
+					
+					log.info("1.) Add  a new Product");
+					log.info("2.) Search for Customers");
+					log.info("3.) Logout from here");
 
 					try {
-						choiceass = Integer.parseInt(scanner.nextLine());
+						choose = Integer.parseInt(scanner.nextLine());
 					} catch (NumberFormatException e) {
-						log.warn("Please enter a digit between 1 and 5 only");
+						log.warn("Please enter number between 1 and 5 only");
 						continue;
 					}
 
-					switch (choiceass) {
+					switch (choose) {
+					
 					case 1:
-						log.info("Under Construction");
-
-						break;
-					case 2:
 						ProductCreateService productCreateService = new ProductCreateServiceImpl();
 						ProductCreateDAO productCreateDAO = new ProductCreateDAOImpl();
 
-						log.info("Enter the Product details to be added to the app: ");
+						log.info("Enter the Product details which you wanna add to: ");
 						log.info("1.) Enter Product ID:");
 
 						int id = 0;
 						try {
 							id = Integer.parseInt(scanner.nextLine());
 						} catch (NumberFormatException e) {
-							log.warn("Please enter a number only");
+							log.warn("You should enter a number only");
 							break;
 						}
 
@@ -134,13 +138,13 @@ public class ShoppingMain {
 							if (productCreateService.checkId(id)) {
 
 							}
-						} catch (BusinessException e3) {
-							log.warn(e3.getMessage());
+						} catch (BusinessException e) {
+							log.warn(e.getMessage());
 							break;
 
 						}
 
-						log.info("2.) Enter Product Name");
+						log.info("2.) Enter your Product Name");
 
 						String name = scanner.nextLine();
 
@@ -148,8 +152,8 @@ public class ShoppingMain {
 							if (productCreateService.checkName(name)) {
 
 							}
-						} catch (BusinessException e3) {
-							log.warn(e3.getMessage());
+						} catch (BusinessException e) {
+							log.warn(e.getMessage());
 							break;
 						}
 
@@ -179,41 +183,41 @@ public class ShoppingMain {
 							int c = productCreateDAO.createProduct(product);
 
 							if (c == 1) {
-								log.info("Product Created Successfully with the details: ");
+								log.info("Product Created Successfully with the following details: ");
 								log.info(product);
 
 							} else {
-								log.info("Could not create product");
+								log.info("New product can not be created");
 							}
 
-						} catch (BusinessException e3) {
-							log.warn(e3.getMessage());
+						} catch (BusinessException e) {
+							log.warn(e.getMessage());
 						}
 
 						break;
-					case 3:
-						log.info("Okay admin, search for customers using below...");
-						int cust = 0;
+					case 2:
+						log.info("Okay Man.... search for customers using below...");
+						int sec = 0;
 
 						do {
 							CustomerSearchService customerSearchService = new CustomerSearchServiceImpl();
 							CustomerSearchDAO customerSearchDAO = new CustomerSearchDAOImpl();
 
 							log.info("1.) Search Customer by email");
-							log.info("2.) Search Customer(s) by First Name");
-							log.info("3.) Search Customer(s) by Last Name");
-							log.info("4.) Show All Customers");
-							log.info("5.) Return back to the Previous Menu");
+							log.info("2.) Search Customers by First Name");
+							log.info("3.) Search Customers by Last Name");
+							log.info("4.) View All Customers");
+							log.info("5.) Go back to the Previous Menu");
 
 							log.info("Please Enter your choice: ");
 
 							try {
-								cust = Integer.parseInt(scanner.nextLine());
+								sec = Integer.parseInt(scanner.nextLine());
 							} catch (NumberFormatException e) {
 								log.warn("Please enter a valid number only");
 							}
 
-							switch (cust) {
+							switch (sec) {
 
 							case 1:
 								log.info("1.) Enter Customer's email: ");
@@ -234,9 +238,9 @@ public class ShoppingMain {
 
 									if (customer1 != null) {
 										log.info("Printing Customer details: ");
-										log.info("\nCustomer's email :" + customer1.getEmail()
-												+ ", Customer's First Name: " + customer1.getFname()
-												+ ", Customer's Last Name: " + customer1.getLname());
+										log.info("\nemail :" + customer1.getEmail()
+												+ ",First Name: " + customer1.getFname()
+												+ ", Last Name: " + customer1.getLname());
 									}
 
 								} catch (BusinessException e1) {
@@ -267,9 +271,9 @@ public class ShoppingMain {
 										log.info("Printing their details:");
 
 										for (Customer customer : customerListf) {
-											log.info("\nCustomer's email :" + customer.getEmail()
-													+ ", Customer's First Name: " + customer.getFname()
-													+ ", Customer's Last Name: " + customer.getLname());
+											log.info("\nCemail :" + customer.getEmail()
+													+ ",First Name: " + customer.getFname()
+													+ ",Last Name: " + customer.getLname());
 										}
 									}
 
@@ -301,9 +305,9 @@ public class ShoppingMain {
 										log.info("Printing their details:");
 
 										for (Customer customer : customerListl) {
-											log.info("\nCustomer's email :" + customer.getEmail()
-													+ ", Customer's First Name: " + customer.getFname()
-													+ ", Customer's Last Name: " + customer.getLname());
+											log.info("\nemail :" + customer.getEmail()
+													+ ",First Name: " + customer.getFname()
+													+ ",Last Name: " + customer.getLname());
 										}
 									}
 
@@ -320,12 +324,12 @@ public class ShoppingMain {
 									List<Customer> customerList = customerSearchDAO.getAllCustomers();
 
 									if (customerList.size() > 0) {
-										log.info("There are : " + customerList.size() + " customers in the database");
-										log.info("Printing all the Customers:");
+										log.info("We have : " + customerList.size() + " customers in our database");
+										log.info("Here is the list of the Customers:");
 										for (Customer customer : customerList) {
-											log.info("\nCustomer's email :" + customer.getEmail()
-													+ ", Customer's First Name: " + customer.getFname()
-													+ ", Customer's Last Name: " + customer.getLname());
+											log.info("\n :" + customer.getEmail()
+													+ ",  First Name: " + customer.getFname()
+													+ ",  Last Name: " + customer.getLname());
 										}
 									}
 
@@ -341,36 +345,34 @@ public class ShoppingMain {
 								break;
 
 							default:
-								log.info("Please enter a digit between 1 and 5 only.");
+								log.info("Please enter a number between 1 and 5 only.");
 								continue;
 							// break;
 							}
 
-						} while (cust != 5);
+						} while (sec != 5);
 
 						
 						break;
-					case 4:
-						log.info("Okay admin, Logging you out...");
-						break;
-					case 5:
-						log.info("Okay admin, Logging you out...");
+			
+					case 3:
+						log.info("Logged Out....Have a nice day");
 
 						break;
 
 					default:
-						log.warn("Please enter a number between 1 and 5 only.");
+						log.warn("Please enter a number between 1 to 3 only.");
 						continue;
-					// break;
+					
 					}
 
-				} while (choiceass != 5);
+				} while (choose != 3);
 
 				break;
 
 						
 			case 2:
-				log.info("Enter customer details for creation :\n");
+				log.info("Enter your details to register a new customer :\n");
 				CustomerCreateService customerCreateService = new CustomerCreateServiceImpl();
 				CustomerCreateDAO customerCreateDAO = new CustomerCreateDAOImpl();
 
@@ -441,7 +443,7 @@ public class ShoppingMain {
 
 				break;
 
-			case 3:log.info("Enter Details to Login");
+			case 3:log.info("Enter  below Details to Login");
 			log.info("1.) Enter your email");
 			CustomerLoginService customerLoginService = new CustomerLoginServiceImpl();
 			CustomerLoginDAO customerLoginDAO = new CustomerLoginDAOImpl();
@@ -490,7 +492,7 @@ public class ShoppingMain {
 			do {
 
 				log.info("1.) Search products");
-				log.info("2.) View your orders");
+				log.info("2.) Place Order");
 				log.info("3.) Logout");
 
 				log.info("\nPlease enter your choice");
@@ -504,22 +506,20 @@ public class ShoppingMain {
 
 				switch (choice1) {
 				case 1:
-					int choice2 = 0;
+					int choc = 0;
 					do {
 
 						log.info("Welcome to Product Search");
-						log.info("How would you want to search the products?");
-
-						//log.info("1.) By name");
-						//log.info("2.) By Id");
-						log.info("3.) Show all products");
-						log.info("4.) Add Product To Cart");
-						log.info("5.) Return back to the previous menu");
+						log.info("How would you like to search for products?");
+						log.info("1.) By name");
+						log.info("2.) Show all products");
+						log.info("3.) Add Product To Your Cart");
+						log.info("4.) Return back to the previous menu");
 
 						log.info("Please enter your choice");
 
 						try {
-							choice2 = Integer.parseInt(scanner.nextLine());
+							choc = Integer.parseInt(scanner.nextLine());
 						} catch (NumberFormatException e) {
 							log.warn("Please enter digits between 1 and 4 only");
 							continue;
@@ -529,8 +529,8 @@ public class ShoppingMain {
 						
 						ProductSearchService productSearchService = new ProductSearchServiceImpl();
 						
-						switch (choice2) {
-						/*case 1:
+						switch (choc) {
+						case 1:
 							log.info("Enter product name: ");
 							
 							String name = scanner.nextLine();
@@ -560,40 +560,9 @@ public class ShoppingMain {
 
 							break;
 
-						case 2:
-							log.info("Enter product id");
-							int id = 0;
-							
-							try{
-								id = Integer.parseInt(scanner.nextLine());
-							}catch(NumberFormatException e) {
-								log.warn("Please enter digits only");
-								continue;
-							}
-							
-							try {
-								if(productSearchService.checkId(id)) {
-									
-								}
-							} catch (BusinessException e1) {
-								log.warn(e1.getMessage());
-							}
-							
-							try {
-								
-								Product product = productSearchDAO.getProductById(id);
-								
-								log.info("Printing product details with ID : "+id);
-								log.info(product);
-								
-							} catch (BusinessException e1) {
-								log.warn(e1.getMessage());
-							}
-							
-							break;*/
 
-						case 3:
-							log.info("All the available products are listed below");
+						case 2:
+							log.info("Here is the List of products We have for You...");
 							
 							try {
 								List<Product> productList = productSearchDAO.getAllProducts();
@@ -608,26 +577,60 @@ public class ShoppingMain {
 							 
 
 							break;
-						case 4:
-							log.info("Enter Product Id to add the product to your cart");
+						case 3:
+							log.info("Enter Product ID of the product you wish to Add to your Cart:");
+							int prodId = 0;
+
+							CartAddDAO cartAddDAO = new CartAddDAOImpl();
+
+							try {
+								prodId = Integer.parseInt(scanner.nextLine());
+							} catch (NumberFormatException e) {
+								log.warn("Please enter a valid ID");
+								continue;
+							}
+
 							
+                             CartAddService cart = new CartAddServiceImpl();
+							try {
+								cart.checkProductID(prodId);
+							} catch (BusinessException e1) {
+								log.warn(e1.getMessage());
+								continue;
+							}
+
+							try {
+								int cartId = cartAddDAO.addToCart(customer1.getEmail(), prodId);
+
+								if (cartId != 0) {
+									log.info("Product added to cart successfully with Cart ID : " + cartId);
+								}
+
+							} catch (BusinessException e) {
+								log.warn(e.getMessage());
+								continue;
+							}
+
 							break;
-						case 5:
-							log.info("Please Wait...loading you to previous menu");
+						case 4:
+							log.info("Taking You Back to Previous menu...");
 							break;
 
 						default:
 							break;
 						}
 
-					} while (choice2 != 5);
+					} while (choc != 5);
 
 					break;
 
 				case 2:
-					log.info("Under Construction");
-
+					log.info("Sry...Cannot Process Your Order!!!!");
+					
 					break;
+
+
+				
 
 				case 3:
 					log.info("Logging you out...");
@@ -640,7 +643,7 @@ public class ShoppingMain {
 			} while (choice1 != 3);
 			
 		
-			case 4:log.info("Hope u had a good time");
+			case 4:log.info("Hope u had a good time with us.....see you soon:))))");
 			break;
 			default:
 				log.warn("Invalid choice! The choice should only be a number between 1-4...... try again.....");

@@ -24,7 +24,6 @@ int c = 0;
 			preparedStatement.setInt(1, product.getId());
 			preparedStatement.setString(2, product.getName());
 			preparedStatement.setInt(3, product.getPrice());
-			
 			c = preparedStatement.executeUpdate();
 			
 			

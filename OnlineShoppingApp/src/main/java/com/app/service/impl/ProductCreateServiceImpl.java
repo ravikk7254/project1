@@ -23,7 +23,7 @@ boolean c = false;
 	public boolean checkId(int id) throws BusinessException {
 boolean c = false;
 		
-		if(id <100 || id>1000 ) {
+		if(id <1 || id>1000 ) {
 			throw new BusinessException("Invalid ID: "+id+" entered");
 		}
 		else {
@@ -36,8 +36,8 @@ boolean c = false;
 	public boolean checkPrice(int price) throws BusinessException {
 boolean c = false;
 		
-		if(price < 1 || price> 999999) {
-			throw new BusinessException("Invalid price entered : "+price);
+		if(price < 1 || price> 1000000) {
+			throw new BusinessException("Invalid Price Entered : "+price);
 		}else {
 			c = true;
 		}
