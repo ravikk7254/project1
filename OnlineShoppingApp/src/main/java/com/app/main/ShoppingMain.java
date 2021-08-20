@@ -431,9 +431,9 @@ public class ShoppingMain {
 				}
 
 				try {
-					int c = customerCreateDAO.createCustomer(customer);
+					int cu = customerCreateDAO.createCustomer(customer);
 
-					if (c == 1) {
+					if (cu == 1) {
 						log.info("New Customer Registration Successfull");
 					}
 
@@ -443,19 +443,19 @@ public class ShoppingMain {
 
 				break;
 
-			case 3:log.info("Enter  below Details to Login");
+			case 3:log.info("Enter following  Details to Login");
 			log.info("1.) Enter your email");
 			CustomerLoginService customerLoginService = new CustomerLoginServiceImpl();
 			CustomerLoginDAO customerLoginDAO = new CustomerLoginDAOImpl();
 			CustomerCreateService customerCreateService1 = new CustomerCreateServiceImpl();
 			//CustomerCreateDAO customerCreateDAO = new CustomerCreateDAOImpl();
 
-			String email2 = scanner.nextLine();
+			String emailc = scanner.nextLine();
 			Customer customer1= new Customer();
 			try {
-				if (customerCreateService1.checkEmail(email2)) {
+				if (customerCreateService1.checkEmail(emailc)) {
 					
-					customer1.setEmail(email2);
+					customer1.setEmail(emailc);
 				}
 			} catch (BusinessException e) {
 				log.warn(e.getMessage());
@@ -476,7 +476,7 @@ public class ShoppingMain {
 			}
 
 			try {
-				Customer customer2 = customerLoginDAO.loginCustomer(email2, password1);
+				Customer customer2 = customerLoginDAO.loginCustomer(emailc, password1);
 
 				if (customer2 != null) {
 					log.info("Customer logged in successfully");

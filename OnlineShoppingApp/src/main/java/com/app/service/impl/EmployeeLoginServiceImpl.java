@@ -6,17 +6,17 @@ import com.app.service.EmployeeLoginService;
 public class EmployeeLoginServiceImpl implements EmployeeLoginService {
 
 	@Override
-	public  boolean checkUserName(String username) throws BusinessException {
+	public  boolean checkUserName(String i) throws BusinessException {
 		
      boolean c = false;
 		
 		String empUser = "ravikumarlabh";
 		
-		if(username.equals(empUser)) {
+		if(i.equals(empUser)) {
 			c= true;
 		}
 		else {
-			throw new BusinessException("UserName is not Valid..please enter a valid one..: "+ username);
+			throw new BusinessException("UserName is not Valid..please enter a valid one..: "+ i);
 		}
 		
 		return c;

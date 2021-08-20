@@ -17,7 +17,7 @@ public class CustomerCreateDAOImpl implements CustomerCreateDAO {
 
 	@Override
 	public int createCustomer(Customer customer) throws BusinessException {
-		int c = 0;
+		int cu= 0;
 		
 		try(Connection connection = MySqlDbConnection.getConnection()){
 			
@@ -31,14 +31,14 @@ public class CustomerCreateDAOImpl implements CustomerCreateDAO {
 			preparedStatement.setString(3, customer.getLname());
 			preparedStatement.setString(4, customer.getPassword());
 			
-			c = preparedStatement.executeUpdate();
+			cu = preparedStatement.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.error(e);
-			throw new BusinessException("Internal server error occured");
+			throw new BusinessException("Internal server error occured....");
 		}
 		
-		return c;
+		return cu;
 	}
 
 	
