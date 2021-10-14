@@ -1,7 +1,9 @@
 Online Shopping
+
 By Ravi Kumar
 
 Project Description
+
 The  project is about the online shopping app where customers can login and they can purchase the items based on their given functionalities.
 
 Technologies Used
